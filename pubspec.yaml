@@ -37,7 +37,6 @@ dependencies:
   rxdart:
   firebase_core:
   cloud_firestore:
-  image_picker:
 
 dev_dependencies:
   flutter_test:
