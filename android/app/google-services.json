@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "124584013249",
+    "project_id": "rd-digital-practical",
+    "storage_bucket": "rd-digital-practical.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124584013249:android:bfd97a206426ab3e901340",
+        "android_client_info": {
+          "package_name": "com.example.practical3d"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124584013249-2bdib1nlmlubaaotg9eqis29v737e9af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.practical3d",
+            "certificate_hash": "7f5d714a2043f0a00baf9baaf2232ce05f947396"
+          }
+        },
+        {
+          "client_id": "124584013249-57ghi2u8kbvpu8biepiq09emrc4tn3eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXnwZAl-ZXrfaj89SUOqquFjZ2-Xb11WE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124584013249-57ghi2u8kbvpu8biepiq09emrc4tn3eg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
