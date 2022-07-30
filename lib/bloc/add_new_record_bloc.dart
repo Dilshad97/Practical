@@ -5,9 +5,14 @@ import 'package:rxdart/rxdart.dart';
 import '../repo/add_new_record.dart';
 
 class AddNewRecordsBloc extends BaseBloc {
+  AddNewRecordsBloc._();
+
+  static final AddNewRecordsBloc instance = AddNewRecordsBloc._();
   final addNewRepo = AddNewRecordRepo();
   final studentState = BehaviorSubject<RecordListState>();
   final percentage = BehaviorSubject<double>();
+  // final records = BehaviorSubject<List<Map<String, dynamic>>>.seeded([{}]);
+  final newrecords = BehaviorSubject<List<Map<String, dynamic>>>.seeded([{}]);
 
   Future<void> addNewRecord(
       {String? name,
@@ -56,7 +61,51 @@ class AddNewRecordsBloc extends BaseBloc {
     return await addNewRepo.deleteRecord(deleteId: deleteId);
   }
 
+  void addRecords(
+      {String? name,
+      String? mathsMarks,
+      String? scienceMarks,
+      String? percentage,
+      String? englishMarks}) {
+    Map<String, dynamic> list = {
+      "maths": mathsMarks,
+      "science": scienceMarks,
+      "percentage": percentage,
+      "english": englishMarks,
+      "name": name
+    };
+    print("=========");
+    print(list);
+    print("=========");
+    print(newrecords.valueOrNull);
+    return newrecords.valueOrNull?.add(list);
+  }
 
+  void deleteRecords(int index) {
+    newrecords.valueOrNull?.removeAt(index);
+  }
+
+
+  void editRecord(
+      {String? name,
+        String? mathsMarks,
+        String? scienceMarks,
+        String? percentage,
+        int? index,
+        String? englishMarks}) {
+    Map<String, dynamic> list = {
+      "maths": mathsMarks,
+      "science": scienceMarks,
+      "percentage": percentage,
+      "english": englishMarks,
+      "name": name
+    };
+    print("=========");
+    print(list);
+    print("=========");
+    print(newrecords.valueOrNull);
+     newrecords.valueOrNull![index!]=list;
+  }
 
 
 }

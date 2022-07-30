@@ -11,14 +11,14 @@ class AddNewRecord extends StatefulWidget {
       this.mathsMarks,
       this.scienceMarks,
       this.isUpdate,
-      this.updateId})
+      this.index})
       : super(key: key);
   final String? name;
   bool? isUpdate = false;
   final String? mathsMarks;
   final String? scienceMarks;
   final String? englishMarks;
-  final String? updateId;
+  final int? index;
 
   @override
   State<AddNewRecord> createState() => _AddNewRecordState();
@@ -29,7 +29,7 @@ class _AddNewRecordState extends State<AddNewRecord> {
   String? mathsMarks;
   String? scienceMarks;
   String? englishMarks;
-  final addNewBloc = AddNewRecordsBloc();
+  final addNewBloc = AddNewRecordsBloc.instance;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -96,23 +96,20 @@ class _AddNewRecordState extends State<AddNewRecord> {
                           buttonCircular: 4,
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              double? maths = 0.0;
-                              double? science = 0.0;
-                              double? english = 0.0;
+                              double? maths = double.tryParse(mathsMarks ?? "");
+                              double? eng = double.tryParse(englishMarks ?? "");
+                              double? science =
+                                  double.tryParse(scienceMarks ?? "");
+                              var percent = maths! + eng! + science!;
+                              double percentage = percent / 300 * 100;
+                              addNewBloc.addRecords(
+                                  englishMarks: englishMarks,
+                                  name: name,
+                                  mathsMarks: mathsMarks,
+                                  scienceMarks: scienceMarks,
+                                  percentage: percentage.toString());
 
-                              maths = double.tryParse(mathsMarks ?? '');
-                              english = double.tryParse(englishMarks ?? "");
-                              science = double.tryParse(scienceMarks ?? "");
-                              double percent = maths! + english! + science!;
-                              var percentage = percent / 300 * 100;
-                              addNewBloc
-                                  .addNewRecord(
-                                      scienceMarks: scienceMarks,
-                                      mathsMarks: mathsMarks,
-                                      name: name,
-                                      percentage: percentage.toString(),
-                                      englishMarks: englishMarks)
-                                  .then((value) => Navigator.pop(context));
+                              Navigator.pop(context);
                             }
                           },
                           text: "Add",
@@ -126,24 +123,21 @@ class _AddNewRecordState extends State<AddNewRecord> {
                           buttonCircular: 4,
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              double? maths = 0.0;
-                              double? science = 0.0;
-                              double? english = 0.0;
+                              double? maths = double.tryParse(mathsMarks ?? "");
+                              double? eng = double.tryParse(englishMarks ?? "");
+                              double? science =
+                              double.tryParse(scienceMarks ?? "");
+                              var percent = maths! + eng! + science!;
+                              double percentage = percent / 300 * 100;
+                              addNewBloc.editRecord(
+                                  englishMarks: englishMarks,
+                                  name: name,
+                                  mathsMarks: mathsMarks,
+                                  scienceMarks: scienceMarks,
+                                  index:widget.index,
+                                  percentage: percentage.toString());
 
-                              maths = double.tryParse(mathsMarks ?? '');
-                              english = double.tryParse(englishMarks ?? "");
-                              science = double.tryParse(scienceMarks ?? "");
-                              double percent = maths! + english! + science!;
-                              var percentage = percent / 300 * 100;
-                              addNewBloc
-                                  .updateRecord(
-                                      scienceMarks: scienceMarks,
-                                      mathsMarks: mathsMarks,
-                                      updateId: widget.updateId,
-                                      percentage: percentage.toString(),
-                                      name: name,
-                                      englishMarks: englishMarks)
-                                  .then((value) => Navigator.pop(context));
+                              Navigator.pop(context);
                             }
                           },
                           text: "Update",
